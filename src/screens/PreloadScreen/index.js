@@ -15,13 +15,22 @@ export default ()=>{
             let token=await AsyncStorage.getItem('token');
             if(token){
                 let userInfo=await api.getUser(token);
-                dispatch({type:'SET_USER',payload:{user:userInfo.user}});
-                dispatch({type:'SET_TOTAL_CONQUESTS',payload:{totalConquest:userInfo.totalConquest}});
-                dispatch({type:'SET_TOTAL_SUCCESS_TASK',payload:{totalSuccessTask:userInfo.taskSuccess}});
-                navigation.reset({
-                    index:1,
-                    routes:[{name:'DrawerStack'}]
-                });
+
+                if(userInfo.error === ""){
+                    dispatch({type:'SET_USER',payload:{user:userInfo.user}});
+                    dispatch({type:'SET_TOTAL_CONQUESTS',payload:{totalConquest:userInfo.totalConquest}});
+                    dispatch({type:'SET_TOTAL_SUCCESS_TASK',payload:{totalSuccessTask:userInfo.taskSuccess}});
+                    navigation.reset({
+                        index:1,
+                        routes:[{name:'DrawerStack'}]
+                    });
+                    
+                }else{
+                    navigation.reset({
+                        index:1,
+                        routes:[{name:'LoginScreen'}]
+                    });
+                }
             }else{
                 navigation.reset({
                     index:1,
