@@ -13,13 +13,13 @@ import RepeatWeek from '../components/RepeatWeek';
 const Drawer = createDrawerNavigator();
 
 export default ()=>{
-
     return (
         <Drawer.Navigator   
             drawerContent={(props)=>(<DrawerCustom {...props}/>)} 
             screenOptions={{
                 headerShown:true,
                 headerTitle:'',
+                headerTintColor: '#006a9c',
                 headerStyle:{
                     backgroundColor:'white',
                 },

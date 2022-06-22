@@ -12,28 +12,32 @@ export default LoginScreen=()=>{
     const navigation=useNavigation();
 
     const doLogin=async ()=>{
-        const result= await api.login(login,password);
-        
-        if(result.error===''){
-            dispatch({type:'SET_TOKEN',payload:{token:result.token}});
+        try{
+            const result= await api.login(login,password);
+            
+            if(result.error===''){
+                dispatch({type:'SET_TOKEN',payload:{token:result.token}});
 
-            let userInfo=await api.getUser(result.token);
-            if(userInfo.error){
-                alert(userInfo.error)
-                setLoading(false);
+                let userInfo=await api.getUser(result.token);
+                if(userInfo.error){
+                    alert(userInfo.error)
+                    setLoading(false);
+                }else{
+                    dispatch({type:'SET_USER',payload:{user:userInfo.user}});
+                    dispatch({type:'SET_TOTAL_CONQUESTS',payload:{totalConquest:userInfo.totalConquest}});
+                    dispatch({type:'SET_TOTAL_SUCCESS_TASK',payload:{totalSuccessTask:userInfo.taskSuccess}});
+                    
+                    navigation.reset({
+                        index:1,
+                        routes:[{name:'DrawerStack'}]
+                    });
+                    
+                }
             }else{
-                dispatch({type:'SET_USER',payload:{user:userInfo.user}});
-                dispatch({type:'SET_TOTAL_CONQUESTS',payload:{totalConquest:userInfo.totalConquest}});
-                dispatch({type:'SET_TOTAL_SUCCESS_TASK',payload:{totalSuccessTask:userInfo.taskSuccess}});
-                
-                navigation.reset({
-                    index:1,
-                    routes:[{name:'DrawerStack'}]
-                });
-                
+                alert(result.error);
             }
-        }else{
-            alert(result.error);
+        }catch(error){
+            alert(error);
         }
     }
 

@@ -66,6 +66,7 @@ export default {
         width:80%;
         height: 40px;
         font-size: 18px;
+        font-weight: bold;
         color: #006a9c;
         borderWidth: 2px;
         borderColor:#006a9c;
@@ -86,7 +87,8 @@ export default {
     InputDate:styled.View`
         width:80%;
         height: 40px;
-        font-size: 18px;
+        font-size: 19px;
+        font-weight: bold;
         color: #006a9c;
         borderWidth: 2px;
         borderColor:#006a9c;

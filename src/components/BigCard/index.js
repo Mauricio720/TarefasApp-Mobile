@@ -195,7 +195,7 @@ export default ()=>{
                                     <Style.InputTouchable 
                                         onPress={()=>{setShowStartDatePicker(true)}}>
                                         <Style.InputIcon 
-                                            source={require('../../assets/Images/typeTask.png')}
+                                            source={require('../../assets/Images/clock.png')}
                                             resizeMode='cover'
                                     />
                                     </Style.InputTouchable>
@@ -234,7 +234,7 @@ export default ()=>{
                                 <Style.InputTouchable 
                                     onPress={()=>{setShowEndPicker(true)}}>
                                     <Style.InputIcon 
-                                        source={require('../../assets/Images/typeTask.png')}
+                                        source={require('../../assets/Images/clock.png')}
                                         resizeMode='cover'
                                     />
                                 </Style.InputTouchable>

@@ -3,7 +3,7 @@ import qs from 'qs';
 import {date_default,time} from '../services/DateTime';
 
 
-const BASEAPI='http://192.168.15.68:8000/api/';
+const BASEAPI='http://apitarefas.mauridesenvolvedor.com/api/';
 
 const verifyToken=async (body,fetchFile=false,token='')=>{
     if(token){
