@@ -10,7 +10,6 @@ export default (props)=>{
     const typeArray=['','Importante','Muito Importante','Razoavel'];
     const levelArray=['','Diario','Semanal','Mensal','Anual'];
     const addMode=props.addMode;
-
     const [showAlert,setShowAlert]=useState(false);
     const [context,dispatch]=useStateValue();
     const [idObjective,setIdObjective]=useState(props.data !== undefined ? props.data.id:'');
@@ -18,7 +17,7 @@ export default (props)=>{
     const [type,setType]=useState(props.data !== undefined ? props.data.type:1);
     const [level,setLevel]=useState(props.data !== undefined ? props.data.level:1);
     const [editMode,setEditMode]=useState(false);
-    const [check,setCheck]=useState(props.data.done===1 ? true:false);
+    const [check,setCheck]=useState(props.data !== undefined?props.data.done:false);
     let idUser=context.user.user.id;
 
     const addUpdateObjective=async ()=>{
@@ -57,7 +56,7 @@ export default (props)=>{
     }
 
     const updateCheck=async ()=>{
-        setCheck(!check);
+        setCheck(check===0?1:0);
         let response=await api.changeSelectedObjective(idObjective,idUser);
         
         if(response.error !== ''){
@@ -127,24 +126,23 @@ export default (props)=>{
                 </Style.Item>
 
                 <Style.ActionsContainer>
-                    {(!addMode && !editMode) &&
-                        <>
-                            {check &&
-                                <Style.Action onPress={updateCheck}>
-                                    <Style.ActionIcon source={require("../../assets/Images/check.png")} 
-                                        resizeMode='cover'/>
-                                </Style.Action>
-                            }
-                            
-                            {!check &&
-                                <Style.Action onPress={updateCheck}>
-                                    <Style.ActionIcon source={require("../../assets/Images/checkEmpty.jpg")} 
-                                        resizeMode='cover'/>
-                                </Style.Action>
-                            }
-                        </>
-                    }
+                  
+                   
+                    
+                    {(check===0 && addMode===false && editMode===false) &&
+                        <Style.Action onPress={updateCheck}>
+                            <Style.ActionIcon source={require("../../assets/Images/checkEmpty.jpg")} 
+                                resizeMode='cover'/>
+                        </Style.Action>
+                    }   
 
+                    {(check===1 && addMode===false && editMode===false) &&
+                        <Style.Action onPress={updateCheck}>
+                            <Style.ActionIcon source={require("../../assets/Images/check.png")} 
+                                resizeMode='cover'/>
+                        </Style.Action>
+                    }
+                  
                     {!editMode &&
                         <Style.Action onPress={()=>{setEditMode(true)}}>
                             <Style.ActionIcon source={require("../../assets/Images/edit.png")} 

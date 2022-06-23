@@ -22,7 +22,7 @@ export default {
     LoginArea:styled.View`
         align-items:center;
         background-color: white;
-        margin-top: 20px;
+        margin-top: 80px;
         padding: 5px;
     `,
 
@@ -87,6 +87,7 @@ export default {
 
     Footer:styled.View`
         margin-top: 25px;
+        min-height: 100px;
         padding: 10px;
         flex-direction:column;
     `,

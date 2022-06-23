@@ -3,6 +3,7 @@ import { useStateValue } from '../../contexts/StateContext';
 import api from '../../services/Api';
 import Style from './style';
 import { useNavigation } from "@react-navigation/core";
+import { Linking } from 'react-native';
 
 export default LoginScreen=()=>{
     const [login,setLogin]=useState('');
@@ -12,6 +13,7 @@ export default LoginScreen=()=>{
     const navigation=useNavigation();
 
     const doLogin=async ()=>{
+        setLoading(true);
         try{
             const result= await api.login(login,password);
             
@@ -35,10 +37,16 @@ export default LoginScreen=()=>{
                 }
             }else{
                 alert(result.error);
+                setLoading(false);
             }
         }catch(error){
-            alert(error);
+            alert(error.message);
+            setLoading(false);
         }
+    }
+
+    const goToForgetPass=()=>{
+        Linking.openURL('http://apitarefas.mauridesenvolvedor.com/login');
     }
 
    
@@ -70,7 +78,7 @@ export default LoginScreen=()=>{
                         </Style.InputGroup>
 
                         <Style.Button>
-                            <Style.ButtonText color='white'>Esqueci a senha</Style.ButtonText>
+                            <Style.ButtonText onPress={goToForgetPass} color='white'>Esqueci a senha</Style.ButtonText>
                         </Style.Button>
 
                         <Style.Button normalButton={true} onPress={doLogin}>
@@ -79,19 +87,7 @@ export default LoginScreen=()=>{
                     </Style.ContainerInfo>
                     
                     <Style.Footer>
-                        <Style.Button>
-                            <Style.ButtonContainer>
-                                <Style.ButtonIcon source={require('../../assets/Images/google.png')} resizeMode='contain'/>
-                                <Style.ButtonText>Login com Google</Style.ButtonText>
-                            </Style.ButtonContainer>
-                        </Style.Button>
                         
-                        <Style.Button >
-                            <Style.ButtonContainer>
-                                <Style.ButtonIcon source={require('../../assets/Images/facebook.png')} resizeMode='contain'/>
-                                <Style.ButtonText>Login com Facebook</Style.ButtonText>
-                            </Style.ButtonContainer>
-                        </Style.Button>
 
                         <Style.Button top={25} onPress={()=>{navigation.navigate('RegisterUserScreen')}}>
                             <Style.ButtonText color='white' backgroundButton='#006a9c'>Não tem uma conta? Cadastre-se</Style.ButtonText>

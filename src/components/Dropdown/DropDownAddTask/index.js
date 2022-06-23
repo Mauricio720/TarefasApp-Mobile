@@ -6,7 +6,8 @@ const styles={
     borderWidth:2,
     borderColor:'#006a9c',
     width:'80%',
-    height:40,
+    height:50,
+    
     color:'#006a9c',
     backgroundColor:'white'
 };
@@ -22,6 +23,8 @@ const styles2={
 
 const styleText={
     color:'#006a9c',
+    fontSize:20,
+    fontWeight: 'bold'
 };
 
 export const Dropdown = (props) => {

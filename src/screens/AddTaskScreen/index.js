@@ -46,7 +46,7 @@ export default (props)=>{
     const onChangeDate = (event, selectedDate) => {
         const currentDate = selectedDate || start;
         setShowDateTaskDatePicker(Platform.OS === 'ios');
-        setDate(date_ptBR(currentDate));
+        setDate(currentDate);
         setWeek(weekList[selectedDate.getDay()]);
     };
 
@@ -120,6 +120,7 @@ export default (props)=>{
                         <Style.Label>Titulo:</Style.Label>
                         <Style.Input
                             placeholder='Digite o titulo da tarefa'
+                            placeholderTextColor="#006a9c"
                             value={title}
                             onChangeText={(t)=>{setTitle(t)}}
                         />
@@ -206,9 +207,9 @@ export default (props)=>{
                             <Style.InputValue>{date_ptBR(date)}</Style.InputValue>
 
                             <Style.InputTouchable 
-                                onPress={()=>{showDateTaskDatePicker(true)}}>
+                                onPress={()=>{setShowDateTaskDatePicker(true)}}>
                                 <Style.InputIcon 
-                                    source={require('../../assets/Images/clock.png')}
+                                    source={require('../../assets/Images/calendarIcon.png')}
                                     resizeMode='cover'
                             />
                             </Style.InputTouchable>

@@ -64,7 +64,7 @@ export default {
 
     Input:styled.TextInput`
         width:80%;
-        height: 40px;
+        height: 50px;
         font-size: 18px;
         font-weight: bold;
         color: #006a9c;
@@ -72,6 +72,7 @@ export default {
         borderColor:#006a9c;
         background-color: white;
         padding-left:15px;
+             
     `,
 
     InputDescription:styled.TextInput`
@@ -86,7 +87,7 @@ export default {
 
     InputDate:styled.View`
         width:80%;
-        height: 40px;
+        height: 50px;
         font-size: 19px;
         font-weight: bold;
         color: #006a9c;
@@ -100,6 +101,8 @@ export default {
     InputValue:styled.TextInput`
         flex:1;
         color:#006a9c;
+        font-size: 18px;
+        font-weight: bold;
     `,
 
     InputTouchable:styled.TouchableOpacity`
